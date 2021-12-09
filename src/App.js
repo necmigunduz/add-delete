@@ -40,7 +40,6 @@ export default class App extends Component {
     return (
       <div className="container">
         <AddUser users={this.state.users} />
-        <hr /> 
         <Users deleteUser={this.deleteUser} users={this.state.users}/>
       </div>
     )
