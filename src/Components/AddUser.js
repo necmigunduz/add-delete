@@ -5,29 +5,34 @@ export default class Users extends Component {
         name: "",
         email: ""
     }
+
+    onChangeName(e) {
+        this.setState({
+           [e.target.name] : e.target.value
+        })
+    };
+
+    onChangeEmail(e) {
+        this.setState({
+            [e.target.email] : e.target.value
+        })
+    };
+
+    onSubmitAdd(e) {
+        e.preventDefault();
+        const {addUser} = this.props;
+        const {name,email} = this.state;
+        const newUser ={
+            id: Math.random(),
+            name: name,
+            email: email
+        }
+        addUser(newUser);
+    };
+    
     render() {
         const {name,email} = this.state;
-        onChangeName(e){
-            this.setState({
-               [    e.target.name] : e.target.value
-            })
-        };
-        onChangeEmail(){
-            this.setState({
-                [e.target.email] : e.target.value
-            })
-        };
-        onSubmitAdd(e){
-            e.preventDefault();
-            const {addUser} = this.props;
-            const {name,email} = this.state;
-            const newUser ={
-                id: Math.random(),
-                name: name,
-                email: email
-            }
-            addUser(newUser);
-        };
+
         return (
             <div className="card">
                 <h4>Add New User</h4>
@@ -46,11 +51,11 @@ export default class Users extends Component {
                                     onChange={this.onChangeName.bind(this)}
                                 />
                             </div>
-                            <br/>
+                            
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
                                 <input
-                                    type='text'
+                                    type='email'
                                     name='email'
                                     id='email'
                                     placeholder='Enter Your Email'
