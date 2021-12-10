@@ -25,8 +25,15 @@ export default class App extends Component {
       ]
     };
     this.deleteUser = this.deleteUser.bind(this);
+    this.addUser = this.addUser.bind(this);
   }
-
+  addUser(newUser){
+    let updatedUsers = this.state.users;
+    updatedUsers.push(newUser);
+    this.setState({
+      users: updatedUsers
+    })
+  };
   deleteUser(id) {
     let updatedUsers = this.state.users;
     console.log(updatedUsers);
@@ -39,7 +46,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="container">
-        <AddUser users={this.state.users} />
+        <AddUser addUser={this.addUser} />
         <Users deleteUser={this.deleteUser} users={this.state.users}/>
       </div>
     )
